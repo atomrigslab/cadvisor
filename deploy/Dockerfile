@@ -63,9 +63,9 @@ COPY --from=build /usr/local/lib/libpfm.so* /usr/local/lib/
 COPY --from=build /usr/local/lib/libipmctl.so* /usr/local/lib/
 COPY --from=build /go/src/github.com/google/cadvisor/_output/cadvisor /usr/bin/cadvisor
 
-EXPOSE 8080
+EXPOSE 4040
 
-ENV CADVISOR_HEALTHCHECK_URL=http://localhost:8080/healthz
+ENV CADVISOR_HEALTHCHECK_URL=http://localhost:4040/healthz
 
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD wget --quiet --tries=1 --spider $CADVISOR_HEALTHCHECK_URL || exit 1
